@@ -31,16 +31,14 @@ int main(){
 		int n;
 		len=sizeof(info);
 		conn_fd=accept(listen_fd,(struct sock_addr*)&info,&len);
-		printf("%s\n",inet_ntoa(info.sin_addr));
 		if(conn_fd>0){
 			printf("connect success\n");
 		}else{
 			printf("connect failed\n");
 		}
-		while((n=read(conn_fd,buf,maxn))>0){
-			printf("re:%s\n",buf);
-		}
-		printf("N:%d\n",n);
+		len=sizeof(info);
+		getsockname(conn_fd,(struct sockaddr *)&info,&len);
+		printf("%d %s",ntohs(info.sin_port),inet_ntoa(info.sin_addr.s_addr));
 		close(conn_fd);
 	}
 	return 0;
