@@ -38,7 +38,10 @@ int main(){
 		}
 		len=sizeof(info);
 		getsockname(conn_fd,(struct sockaddr *)&info,&len);
-		printf("%d %s",ntohs(info.sin_port),inet_ntoa(info.sin_addr.s_addr));
+		printf("sock:%d %s\n",ntohs(info.sin_port),inet_ntoa(info.sin_addr.s_addr));
+		len=sizeof(info);
+		getpeername(conn_fd,(struct sockaddr *)&info,&len);
+		printf("sock:%d %s\n",ntohs(info.sin_port),inet_ntoa(info.sin_addr.s_addr));
 		close(conn_fd);
 	}
 	return 0;
