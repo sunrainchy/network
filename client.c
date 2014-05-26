@@ -3,6 +3,7 @@
 #include <linux/in.h>
 #include <signal.h>
 #include <string.h>
+#include <stdio.h>
 char buf[10000];
 int main(){
 	int connfd,sock_fd;
