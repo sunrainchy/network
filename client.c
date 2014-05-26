@@ -16,9 +16,6 @@ int main(){
 	client.sin_addr.s_addr=inet_addr("192.168.0.15");
 	if(connect(sock_fd,(struct sockaddr*)&client,sizeof(client))<0)printf("connect error\n");
 	else printf("success\n");
-	while(scanf("%s",buf)!=EOF){
-		write(sock_fd,buf,strlen(buf));
-	}
 	return 0;
 }
 
