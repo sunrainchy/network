@@ -61,6 +61,13 @@ int main(){
 			len=sizeof(info);
 			getpeername(conn_fd,(struct sockaddr *)&info,&len);
 			printf("sock:%d %s\n",ntohs(info.sin_port),inet_ntoa(info.sin_addr.s_addr));
+			while((n=read(conn_fd,buf,sizeof(buf)))>0){
+				buf[n]=0;
+				printf("Read success:%s\n",buf);
+			}
+			if(n<0){
+				printf("Read Error\n)");
+			}
 			exit(0);
 		}else{
 			close(conn_fd);	
