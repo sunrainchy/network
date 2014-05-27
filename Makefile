@@ -8,3 +8,5 @@ select_server.run: select_server.c
 	$(CC) -o select_server.run select_server.c
 select_client.run: select_client.c
 	$(CC) -o select_client.run select_client.c
+clean:
+	rm *.o *.run
