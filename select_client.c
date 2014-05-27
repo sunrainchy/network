@@ -18,6 +18,8 @@ int main(){
 	else printf("success\n");
 	while(scanf("%s",buf)!=EOF){
 		write(sock_fd,buf,strlen(buf));
+		read(sock_fd,buf,sizeof(buf));
+		printf("BUF:%s\n",buf);
 	}
 	return 0;
 }
