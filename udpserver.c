@@ -9,7 +9,8 @@
 char str[maxn];
 int main(){
 	struct sockaddr_in server,client;
-	int udp_sock_fd,len;
+	int udp_sock_fd,len,n;
+	socklen_t l;
 	bzero(&server,sizeof(server));
 	server.sin_family=AF_INET;
 	server.sin_port=htons(SERVER_PORT);
@@ -20,10 +21,14 @@ int main(){
 		return 0;
 	}
 	bind(udp_sock_fd,(struct sockaddr*)&server,sizeof(server));
+	n=1024;
+	setsockopt(udp_sock_fd,SOL_SOCKET,SO_RCVBUF,&n,sizeof(n));
+	int num=0;
+	sleep(5);
 	while(1){
-		len=recvfrom(udp_sock_fd,str,sizeof(str),0,(struct sock_addr*)&client,sizeof(client));
-		printf("RECV:%s\n",str);
-		sendto(udp_sock_fd,str,len,0,(struct sock_addr*)&client,sizeof(client));
+		len=recvfrom(udp_sock_fd,str,sizeof(str),0,(struct sockaddr*)&client,&l);
+		num++;
+		printf("RECV:%s num:%d\n",str,num);
 	}
 	return 0;
 }
