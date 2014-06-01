@@ -29,6 +29,7 @@ int main(){
 		len=recvfrom(udp_sock_fd,str,sizeof(str),0,(struct sockaddr*)&client,&l);
 		num++;
 		printf("RECV:%s num:%d\n",str,num);
+		sendto(udp_sock_fd,str,sizeof(str),0,(struct sockaddr*)&client,l);
 	}
 	return 0;
 }
